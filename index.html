@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Age Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .age-calculator {
+            text-align: center;
+        }
+
+        .result-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        #result {
+            font-size: 18px;
+        }
+
+        .result {
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .year {
+            font-weight: bold;
+            color: blue;
+        }
+
+        .month {
+            font-style: italic;
+            color: green;
+        }
+
+        .day {
+            font-weight: bold;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="age-calculator">
+            <h1 class="heading"><i class="fas fa-calculator"></i> Age Calculator</h1>
+            <div class="controls">
+                <input type="date" id="date">
+                <button id="calculate">Calculate</button>
+            </div>
+            <div class="result-box">
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Get the input date from the user
+        const inputDate = document.getElementById('date');
+
+        // Listen for the button click
+        document.getElementById('calculate').addEventListener('click', () => {
+            const dob = new Date(inputDate.value); // User's date of birth
+            const today = new Date(); // Current date
+
+            // Calculate the difference in milliseconds
+            const ageInMillis = today - dob;
+
+            // Convert milliseconds to years, months, and days
+            const ageDate = new Date(ageInMillis);
+            const years = ageDate.getUTCFullYear() - 1970;
+            const months = ageDate.getUTCMonth();
+            const days = ageDate.getUTCDate();
+
+            // Display the result
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `Your age is <span class="year">${years} years</span>, <span class="month">${months} months</span>, and <span class="day">${days} days</span>.`;
+        });
+
+    </script>
+</body>
+</html>
